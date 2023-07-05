@@ -1,0 +1,487 @@
+@charset "utf-8";
+
+
+h2{
+  font-size:1.4rem;
+}
+
+h2,
+#container p,
+small{
+  margin:0 0 30px 0;
+}
+
+/* h2 装飾 */
+h2{
+  margin:0.5em 0 0.8em;
+  position: relative;
+  padding: 0.25em 1em;
+  border: solid 2px #ffcb8a;
+  border-radius: 3px 0 3px 0;
+}
+h2:before,h2:after
+{
+  content: '';
+  position: absolute;
+  width:10px;
+  height: 10px;
+  border: solid 2px #ffcb8a;
+  border-radius: 50%;
+}
+h2:after {
+  top:-9px;
+  left:-9px;
+}
+h2:before {
+  bottom:-9px;
+  right:-9px;
+}
+/* /h2 装飾 */
+
+small{
+  display: block;
+  text-align: center;
+}
+
+/*========= 右固定レイアウトのためのCSS ===============*/
+
+/*左と右を囲う全体のエリア*/
+#wrapper{
+  position: relative;/*position stickyの基点にするため relativeをかける*/
+  z-index: 5;
+  position: absolute;
+  display: flex;/*左エリア、右エリア横並び指定*/
+  flex-direction: row-reverse;/*左右逆*/
+  flex-wrap: wrap;/*ボックスの折り返し可*/
+}
+
+/*右エリア*/
+#fixed-area{
+  /*右固定記述*/
+    position: -webkit-sticky;/*Safari用*/
+    position: sticky;
+  top:0;
+  /*横半分50% 縦を100vhにする*/
+  width: 50%;
+  height: 100vh;
+  /*装飾のためのCSS*/
+  display: flex;
+  flex-flow: column;
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* color:#fff; */
+  background-color: rgb(255, 204, 109);
+  background-image: url(../img/bgimg1.png);
+  background-position: right 10% bottom 0;
+	background-repeat: no-repeat;
+	background-size: 90% auto;
+}
+
+header {
+  width: 20em;
+}
+
+.catch_copy {
+  font-size: 1.2em;
+  width: 70%;
+  margin-left: 2em;
+}
+
+.guidance {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  background-size: contain;
+}
+
+.catalog {
+  background-image: url(../img/catalog.png);
+  width: 16em;
+  height: 8em;
+}
+
+.event {
+  background-image: url(../img/event.png);
+  width: 14em;
+  height: 8em;
+}
+
+.guidance-item {
+  position: relative;
+}
+
+.guidance-item a {
+  position: absolute;
+  left: 30%;
+  top: 50%;
+  text-decoration: none;
+  color: #333;
+  font-size: 1.4em;
+  font-weight: bold;
+  -webkit-text-stroke: 1px #fff;
+}
+
+/*========= ナビゲーションのためのCSS ===============*/
+
+#g-nav{
+  /*position:fixed;にし、z-indexの数値を大きくして前面へ*/
+  position:fixed;
+  z-index: 999;
+  /*ナビのスタート位置と形状*/
+top:0;
+  right: -120%;
+width:50%;
+  height: 100vh;/*ナビの高さ*/
+background:#999;
+  /*動き*/
+transition: all 0.6s;
+}
+
+/*アクティブクラスがついたら位置を0に*/
+#g-nav.panelactive{
+  right: 0;
+}
+
+/*ナビゲーションの縦スクロール*/
+#g-nav.panelactive #g-nav-list{
+  /*ナビの数が増えた場合縦スクロール*/
+  position: fixed;
+  z-index: 999; 
+  width: 50%;
+  height: 100vh;/*表示する高さ*/
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/*ナビゲーション*/
+#g-nav ul {
+  /*ナビゲーション天地中央揃え*/
+  position: absolute;
+  z-index: 999;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+}
+
+/*リストのレイアウト設定*/
+
+#g-nav li{
+list-style: none;
+  text-align: center;
+}
+
+#g-nav li a{
+color: #333;
+text-decoration: none;
+padding:10px;
+display: block;
+text-transform: uppercase;
+letter-spacing: 0.1em;
+font-weight: bold;
+}
+
+/*========= ボタンのためのCSS ===============*/
+.openbtn1{
+position:fixed;
+  z-index: 9999;/*ボタンを最前面に*/
+top:10px;
+right: 10px;
+cursor: pointer;
+  width: 50px;
+  height:50px;
+}
+
+/*×に変化*/  
+.openbtn1 span{
+  display: inline-block;
+  transition: all .4s;
+  position: absolute;
+  left: 14px;
+  height: 5px;
+  border-radius: 2px;
+background-color: #333;
+  width: 55%;
+}
+
+.openbtn1 span:nth-of-type(1) {
+top:15px; 
+}
+
+.openbtn1 span:nth-of-type(2) {
+top:23px;
+}
+
+.openbtn1 span:nth-of-type(3) {
+top:31px;
+}
+
+.openbtn1.active span:nth-of-type(1) {
+  top: 18px;
+  left: 18px;
+  transform: translateY(6px) rotate(-45deg);
+  width: 50%;
+}
+
+.openbtn1.active span:nth-of-type(2) {
+opacity: 0;
+}
+
+.openbtn1.active span:nth-of-type(3){
+  top: 30px;
+  left: 18px;
+  transform: translateY(-6px) rotate(45deg);
+  width: 50%;
+}
+
+/* Twitter・Instagram */
+.bi{
+  position:fixed;
+  z-index: 9999;
+  cursor: pointer;
+}
+.bi-twitter {
+  top: 10px;
+  right: 120px;
+  color: #1DA1F2;
+  font-size: 30px;
+}
+
+.instagram {
+  top: 20px;
+  right: 70px;
+}
+
+.instagram img {
+  width: 30px;
+  height: 30px;
+}
+
+
+/*===========左エリア=============*/
+#container{
+  /*横半分50%にする*/
+  width:50%;
+}
+/*左各セクション 装飾のためのCSS*/
+section{
+  min-height: 100vh;
+  padding:30px;
+}
+
+section:nth-of-type(2n){
+/*装飾のためのCSS*/
+  background:#eee;
+}
+
+.one h3,
+.one p {
+  text-align: center;
+}
+.text {
+  width: 70%;
+  margin: auto;
+}
+
+/* .post-thumb { */
+  /* shape-outside: circle(); */
+/* } */
+
+.post-image {
+  width: 40%;
+  height: 40%;
+  object-fit: cover;
+}
+
+.scissors {
+  border-radius: 60% 50% 80% 30%/60%;
+  margin-right: 10%;
+  float: left;
+  shape-outside: circle();
+}
+
+.table {
+  margin: 20px auto 30px;
+}
+
+.table td {
+  padding-left: 1rem;
+}
+
+.hairdryer {
+  border-radius: 30% 60% 80% 40%/60%;
+  margin-left: 10%;
+  float: right;
+  shape-outside: circle();
+}
+
+.schedule th{
+  padding: 10px;
+}
+
+.schedule td{
+  padding: 1rem;
+}
+
+.mirror {
+  border-radius: 80% 70% 40% 40%/80%;
+  margin-right: 10%;
+  float: left;
+  shape-outside: circle();
+}
+
+.grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.grid-item {
+	text-align: center;
+	position: relative;
+  /* width: 100%; */
+  /* height: 100%; */
+}
+.grid-item img {
+  width: 100%;
+}
+.grid-item p {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: #fff;
+  font-size: 1.6em;
+  font-weight: bold;
+  -webkit-text-stroke: 1px #333; /* webkitのベンダープレフィックス */
+}
+.grid-item:hover {
+  opacity: 0.8;
+}
+
+/* 質問 */
+.question {
+  margin: 30px auto;
+  font-size: 1.2rem;
+}
+
+dl {
+  margin: 0;
+}
+
+dl > div {
+  margin-bottom: 8px;
+}
+
+dt {
+  padding: 8px;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+dt::before {
+  content: 'Q. ';
+}
+
+dt::after {
+  content: '+';
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  transition: transform .3s;
+}
+
+dl > div.appear dt::after {
+  transform: rotate(45deg);
+}
+
+dd {
+  padding: 8px;
+  margin: 0;
+  display: none;
+  margin-bottom: 2rem;
+}
+
+dd::before {
+  content: 'A .';
+}
+
+dl > div.appear dd {
+  display: block;
+  animation: .3s fadeIn;
+}
+
+.question-more a {
+  color: #333;
+  text-decoration: none;
+}
+
+.question-more:hover {
+  opacity: 0.6;
+}
+
+/* 店舗情報・地図 sp*/
+#location {
+  padding: 4% 0;
+  padding-bottom: 0;
+}
+
+.location-info p {
+  padding: 12px 10px;
+}
+
+.location-info,
+.location-map {
+  width: 100%;
+  margin: 2rem auto 0;
+}
+
+iframe{
+  width: 100%;
+}
+
+/*========= waveを描画するエリア設定 ===============*/
+
+canvas{
+  position: absolute;
+  position: relative;
+  position: fixed;
+  background-attachment: fixed; /*スクロール時に固定。*/
+  background-attachment: scroll; /*初期値。他の要素と一緒にスクロールする。*/
+  z-index: 10;
+  bottom: 0;
+  left:0;
+  width: 100%;
+}
+
+/*＝＝＝＝＝＝＝＝＝＝＝768px以下の見え方＝＝＝＝＝＝＝＝＝＝＝＝＝*/
+
+@media screen and (max-width:768px){
+  #wrapper{
+    display: block;/*display:flex;を解除*/
+  }
+  section{
+    min-height:auto;/*縦を100vh⇒解除*/
+  }
+
+  #fixed-area{
+      position:relative!important;/*position stickyを解除*/
+    width:100%;/*横幅を100%にして1列に見せる*/
+    height: 90vh;/*縦幅を100vh⇒40vh ※任意の高さに設定可能*/
+    background-size: 85% auto;
+  }
+
+  #container{
+    width:100%;/*横幅を100%にして1列に見せる*/
+  }
+
+  #g-nav,
+  #g-nav.panelactive #g-nav-list{
+    width: 100%;
+  }
+
+  .catch_copy {
+    margin: 0 auto;
+  }
+}
